@@ -1,4 +1,4 @@
-[Uploading index.html…]()
+[index.html](https://github.com/user-attachments/files/29167055/index.html)
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,14 +10,7 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f8f6;color:#1a1a1a;-webkit-font-smoothing:antialiased}
 .wrap{max-width:480px;margin:0 auto;padding-bottom:120px}
 
-.hdr{background:white;padding:1rem 1rem 0.75rem;border-bottom:1px solid #e8e8e4;position:sticky;top:0;z-index:20}
-.hdr-top{display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:18px;font-weight:600;color:#1a1a1a;letter-spacing:-0.3px}
-.logo span{color:#1D9E75}
-.wpp-topo{display:flex;align-items:center;gap:4px;font-size:12px;color:#1D9E75;text-decoration:none;font-weight:500}
-.sub{font-size:12px;color:#888;margin-top:3px}
-
-.filtros{background:white;display:flex;gap:6px;padding:0.6rem 1rem;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #e8e8e4}
+.filtros{background:white;display:flex;gap:6px;padding:0.6rem 1rem;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #e8e8e4;position:sticky;top:0;z-index:20}
 .filtros::-webkit-scrollbar{display:none}
 .fb{flex-shrink:0;font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid #ddd;background:white;color:#666;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all 0.15s}
 .fb:hover{border-color:#1D9E75;color:#1D9E75}
@@ -64,16 +57,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </head>
 <body>
 <div class="wrap">
-  <div class="hdr">
-    <div class="hdr-top">
-      <div class="logo">ZIG <span>Locações</span></div>
-      <a class="wpp-topo" href="https://wa.me/5531975758250">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#1D9E75"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.122 1.527 5.855L.057 23.882l6.195-1.624A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.007-1.374l-.359-.214-3.718.975.993-3.625-.234-.372A9.794 9.794 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
-        (31) 97575-8250
-      </a>
-    </div>
-    <div class="sub">Selecione os equipamentos e solicite orçamento</div>
-  </div>
   <div class="filtros" id="filtros"></div>
   <div class="lista" id="lista">
     <div class="loading"><div style="margin-bottom:12px"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>Carregando equipamentos...</div>
@@ -97,6 +80,18 @@ const API="https://script.google.com/macros/s/AKfycbx0KiXvHQm5R19E9AqE7gXiz-sNfv
 const WPP="5531975758250";
 const PL={d:"Diária",s:"Semanal",m:"Mensal"};
 
+const ORDEM_FILTROS=["Todos","demolição","concretagem","compactação","ferramentas eletricas","equipamentos","andaimes e escoramentos","acessorio"];
+const LABEL_FILTRO={
+  "Todos":"Todos",
+  "demolição":"Demolição",
+  "concretagem":"Concretagem",
+  "compactação":"Compactação",
+  "ferramentas eletricas":"Ferramentas",
+  "equipamentos":"Equipamentos",
+  "andaimes e escoramentos":"Andaimes e Escoras",
+  "acessorio":"Acessório",
+};
+
 const ICOS={
   "demolicao":`<svg width="24" height="31" viewBox="0 0 52 68" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="16" x2="12" y2="16"/><line x1="2" y1="20" x2="12" y2="20"/><line x1="40" y1="16" x2="50" y2="16"/><line x1="40" y1="20" x2="50" y2="20"/><rect x="12" y="8" width="28" height="20" rx="3"/><line x1="18" y1="8" x2="18" y2="11"/><line x1="22" y1="8" x2="22" y2="11"/><line x1="26" y1="8" x2="26" y2="11"/><line x1="30" y1="8" x2="30" y2="11"/><line x1="34" y1="8" x2="34" y2="11"/><rect x="18" y="13" width="16" height="7" rx="1.5"/><rect x="19" y="28" width="14" height="8" rx="1"/><rect x="17" y="36" width="18" height="14" rx="2"/><line x1="17" y1="41" x2="35" y2="41"/><path d="M20 50h12l-2 5H22l-2-5z"/><rect x="23" y="55" width="6" height="8" rx="1"/><path d="M23 63h6v2l-2 3h-2l-2-3v-2z"/></svg>`,
   "concretagem":`<svg width="30" height="30" viewBox="0 0 56 56" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="22" cy="20" rx="13" ry="9" transform="rotate(-25 22 20)"/><ellipse cx="13" cy="12" rx="5" ry="3.5" transform="rotate(-25 13 12)"/><rect x="32" y="16" width="9" height="14" rx="2"/><circle cx="36" cy="12" r="4"/><line x1="36" y1="8" x2="36" y2="16"/><line x1="32" y1="12" x2="40" y2="12"/><circle cx="36" cy="12" r="1.5"/><line x1="14" y1="36" x2="34" y2="36"/><line x1="14" y1="33" x2="14" y2="42"/><circle cx="18" cy="41" r="3.5"/><circle cx="18" cy="41" r="1.2"/><circle cx="36" cy="41" r="2.5"/><circle cx="36" cy="41" r="0.8"/></svg>`,
@@ -108,19 +103,22 @@ const ICOS={
   "acessorio":`<svg width="28" height="28" viewBox="0 0 52 52" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="8" width="28" height="28" rx="4"/><line x1="20" y1="2" x2="20" y2="12"/><line x1="32" y1="2" x2="32" y2="12"/><rect x="19" y="18" width="4" height="8" rx="1"/><rect x="29" y="18" width="4" height="8" rx="1"/><circle cx="26" cy="30" r="2"/><path d="M26 36v8M20 44h12"/></svg>`,
 };
 
-function getIco(grupo,sel){
+function getIco(grupo,ativo){
   const k=normalizeGrp(grupo);
   const svg=ICOS[k]||ICOS["acessorio"];
-  const color=sel?"#1D9E75":"#888";
+  const color=ativo?"#1D9E75":"#888";
   return svg.replace(/stroke="#888"/g,`stroke="${color}"`);
 }
 
 function normalizeGrp(g){
-  return(g||"").toLowerCase().trim()
-    .replace("demolição","demolicao")
-    .replace("compactação","compactacao")
-    .replace(/[éê]/g,"e").replace(/[çc]/g,"c").replace(/[ãâa]/g,"a");
+  const s=(g||"").toLowerCase().trim();
+  if(s==="andaimes e escoramentos")return"altura";
+  if(s==="compactação")return"compactacao";
+  if(s==="demolição")return"demolicao";
+  return s;
 }
+
+function normFiltro(g){return(g||"").toLowerCase().trim();}
 
 let equips=[],filtro="Todos",sel={};
 function fmt(n){return"R$ "+Math.round(n).toLocaleString("pt-BR");}
@@ -139,17 +137,22 @@ async function load(){
 }
 
 function renderFiltros(){
-  const grupos=["Todos",...new Set(equips.map(e=>(e.grupo||"").toLowerCase().trim()))];
-  document.getElementById("filtros").innerHTML=grupos.map(g=>{
-    const l=g==="Todos"?"Todos":g.charAt(0).toUpperCase()+g.slice(1);
-    return`<button class="fb${filtro===g?" on":""}" onclick="setF('${g}')">${l}</button>`;
-  }).join("");
+  const existentes=new Set(equips.map(e=>normFiltro(e.grupo)));
+  const visiveis=ORDEM_FILTROS.filter(f=>f==="Todos"||existentes.has(f));
+  document.getElementById("filtros").innerHTML=visiveis.map(g=>`<button class="fb${filtro===g?" on":""}" onclick="setF('${g}')">${LABEL_FILTRO[g]||g}</button>`).join("");
 }
 
 function setF(g){filtro=g;renderFiltros();renderLista();}
 
 function renderLista(){
-  const itens=filtro==="Todos"?equips:equips.filter(e=>(e.grupo||"").toLowerCase().trim()===filtro);
+  const itens=filtro==="Todos"
+    ?[...equips].sort((a,b)=>{
+        const oa=ORDEM_FILTROS.indexOf(normFiltro(a.grupo));
+        const ob=ORDEM_FILTROS.indexOf(normFiltro(b.grupo));
+        return oa!==ob?oa-ob:(a.nome||"").localeCompare(b.nome||"","pt-BR");
+      })
+    :equips.filter(e=>normFiltro(e.grupo)===filtro).sort((a,b)=>(a.nome||"").localeCompare(b.nome||"","pt-BR"));
+
   if(!itens.length){document.getElementById("lista").innerHTML='<div class="loading">Nenhum equipamento</div>';return;}
   document.getElementById("lista").innerHTML=itens.map(eq=>{
     const s=sel[eq.nome],p=s?.periodo||"d";
@@ -162,12 +165,7 @@ function renderLista(){
         <div class="grp">${eq.grupo||""}</div>
       </div>
       <div class="btns">
-        ${[["d","Dia"],["s","Sem"],["m","Mês"]].map(([k,l])=>
-          `<div class="pb${s&&p===k?" on":""}" onclick="setPer('${nm}','${k}')">
-            <span class="pl">${l}</span>
-            <span class="pv">${fmt(eq[k])}</span>
-          </div>`
-        ).join("")}
+        ${[["d","Dia"],["s","Sem"],["m","Mês"]].map(([k,l])=>`<div class="pb${s&&p===k?" on":""}" onclick="setPer('${nm}','${k}')"><span class="pl">${l}</span><span class="pv">${fmt(eq[k])}</span></div>`).join("")}
       </div>
     </div>`;
   }).join("");
@@ -180,6 +178,7 @@ function tog(nome){
 function desel(nome){delete sel[nome];renderLista();upd();}
 function setPer(nome,p){
   if(!sel[nome])sel[nome]={periodo:p};
+  else if(sel[nome].periodo===p)delete sel[nome];
   else sel[nome].periodo=p;
   renderLista();upd();
 }
