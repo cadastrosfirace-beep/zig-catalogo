@@ -25,30 +25,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .lista{padding:0.75rem}
 
-.card{display:flex;align-items:center;gap:10px;background:white;border:1px solid #e8e8e4;border-radius:10px;padding:10px;margin-bottom:6px;transition:border-color 0.15s,box-shadow 0.15s;position:relative}
+.card{display:flex;align-items:center;gap:10px;background:white;border:1px solid #e8e8e4;border-radius:10px;padding:10px;margin-bottom:12px;position:relative;transition:border-color 0.15s,box-shadow 0.15s}
 .card.sel{border-color:#1D9E75;box-shadow:0 0 0 3px rgba(29,158,117,0.1)}
-.card:active{transform:scale(0.99)}
 
-.btn-x{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:#1D9E75;border:none;cursor:pointer;display:none;align-items:center;justify-content:center;padding:0;line-height:1}
+.btn-x{position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:#1D9E75;border:2px solid white;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
 .card.sel .btn-x{display:flex}
-.btn-x svg{width:10px;height:10px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round}
+.btn-x svg{width:9px;height:9px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round}
 
-.foto{width:44px;height:44px;border-radius:8px;background:#f3f3f0;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.foto{width:44px;height:44px;border-radius:8px;background:#f3f3f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .card.sel .foto{background:#E1F5EE}
-.foto svg{transition:stroke 0.15s}
-.card.sel .foto svg{stroke:#1D9E75}
 
 .info{flex:1;min-width:0;cursor:pointer}
-.nome{font-size:13px;font-weight:600;color:#1a1a1a;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:20px}
+.nome{font-size:13px;font-weight:600;color:#1a1a1a;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .grp{font-size:10px;color:#aaa;margin-top:2px;text-transform:capitalize}
 
-.btns{display:flex;gap:4px;flex-shrink:0}
-.pb{display:flex;flex-direction:column;align-items:center;border:1px solid #e0e0dc;border-radius:7px;padding:5px 6px;cursor:pointer;min-width:46px;transition:all 0.15s;background:white;-webkit-tap-highlight-color:transparent}
-.pb:hover{border-color:#1D9E75}
+.btns{display:flex;gap:5px;flex-shrink:0}
+.pb{display:flex;flex-direction:column;align-items:center;justify-content:center;border:1.5px solid #1D9E75;border-radius:7px;padding:6px 0;cursor:pointer;width:58px;background:white;transition:all 0.15s;-webkit-tap-highlight-color:transparent}
 .pb.on{background:#1D9E75;border-color:#1D9E75}
-.pl{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
-.pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px}
-.pb.on .pl{color:rgba(255,255,255,0.75)}
+.pl{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:0.3px;font-weight:500;line-height:1.2}
+.pv{font-size:12px;font-weight:700;color:#1D9E75;line-height:1.3;margin-top:2px}
+.pb.on .pl{color:rgba(255,255,255,0.8)}
 .pb.on .pv{color:white}
 
 .rodape{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e8e8e4;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:30;box-shadow:0 -4px 20px rgba(0,0,0,0.06)}
@@ -97,7 +93,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const API="https://script.google.com/macros/s/AKfycbxR2rX9BJ5YrskpdVZwFBVmkIJkteI-QIP9NRHTPeizBBSp8KdE4zbgIst6mdWgdRHN/exec";
+const API="https://script.google.com/macros/s/AKfycbx0KiXvHQm5R19E9AqE7gXiz-sNfvorl4pA4rkYYq_XjaO4leVtyAU6c3M7qAvj_ZxA/exec";
 const WPP="5531975758250";
 const PL={d:"Diária",s:"Semanal",m:"Mensal"};
 
@@ -123,7 +119,7 @@ function normalizeGrp(g){
   return(g||"").toLowerCase().trim()
     .replace("demolição","demolicao")
     .replace("compactação","compactacao")
-    .replace("é","e").replace("ç","c").replace("ã","a").replace("â","a").replace("ê","e");
+    .replace(/[éê]/g,"e").replace(/[çc]/g,"c").replace(/[ãâa]/g,"a");
 }
 
 let equips=[],filtro="Todos",sel={};
@@ -131,7 +127,7 @@ function fmt(n){return"R$ "+Math.round(n).toLocaleString("pt-BR");}
 
 async function load(){
   try{
-    const r=await fetch(API);
+    const r=await fetch(API,{redirect:"follow"});
     if(!r.ok)throw new Error();
     equips=await r.json();
     if(!Array.isArray(equips)||!equips.length)throw new Error();
@@ -159,7 +155,7 @@ function renderLista(){
     const s=sel[eq.nome],p=s?.periodo||"d";
     const nm=eq.nome.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
     return`<div class="card${s?" sel":""}">
-      ${s?`<button class="btn-x" onclick="event.stopPropagation();desel('${nm}')" aria-label="Remover"><svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg></button>`:""}
+      <button class="btn-x" onclick="event.stopPropagation();desel('${nm}')" aria-label="Remover"><svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg></button>
       <div class="foto" onclick="tog('${nm}')">${getIco(eq.grupo,!!s)}</div>
       <div class="info" onclick="tog('${nm}')">
         <div class="nome">${eq.nome}</div>
