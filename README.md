@@ -47,7 +47,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pb:hover{border-color:#1D9E75}
 .pb.on{background:#1D9E75;border-color:#1D9E75}
 .pl{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
-.pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px;font-variant-numeric:tabular-nums}
+.pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px;font-variant-numeric:tabular-nums;min-width:36px;text-align:center}
 .pb.on .pl{color:rgba(255,255,255,0.75)}
 .pb.on .pv{color:white}
 
@@ -169,8 +169,8 @@ function renderLista(){
       <div class="btns">
         ${[["d","Dia"],["s","Sem"],["m","Mês"]].map(([k,l])=>
           `<div class="pb${s&&p===k?" on":""}" onclick="setPer('${nm}','${k}')">
-            <span class="pl">${l}</span>
-            <span class="pv">${fmt(eq[k])}</span>
+          <span class="pl">${l}</span>
+            <span class="pv-r">R$</span><span class="pv">${Math.round(eq[k]).toLocaleString("pt-BR")}</span>
           </div>`
         ).join("")}
       </div>
