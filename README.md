@@ -43,11 +43,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .grp{font-size:10px;color:#aaa;margin-top:2px;text-transform:capitalize}
 
 .btns{display:flex;gap:4px;flex-shrink:0}
-.pb{display:flex;flex-direction:column;align-items:center;border:1px solid #e0e0dc;border-radius:7px;padding:5px 6px;cursor:pointer;min-width:46px;transition:all 0.15s;background:white;-webkit-tap-highlight-color:transparent}
+.pb{display:flex;flex-direction:column;align-items:center;border:1px solid #e0e0dc;border-radius:7px;padding:5px 6px;cursor:pointer;min-width:52px;width:52px ;transition:all 0.15s;background:white;-webkit-tap-highlight-color:transparent}
 .pb:hover{border-color:#1D9E75}
 .pb.on{background:#1D9E75;border-color:#1D9E75}
 .pl{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
-.pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px}
+.pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px;font-variant-numeric:tabular-nums}
 .pb.on .pl{color:rgba(255,255,255,0.75)}
 .pb.on .pv{color:white}
 
