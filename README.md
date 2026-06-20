@@ -46,8 +46,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pb{display:flex;flex-direction:column;align-items:center;border:1px solid #e0e0dc;border-radius:7px;padding:5px 6px;cursor:pointer;min-width:64px;width:64px;text-align:center ;transition:all 0.15s;background:white;-webkit-tap-highlight-color:transparent}
 .pb:hover{border-color:#1D9E75}
 .pb.on{background:#1D9E75;border-color:#1D9E75}
-.pl{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
-.pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px;font-variant-numeric:tabular-nums;min-width:36px;text-align:center}
+.pl{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
+.pv{font-size:12px;font-weight:700;color:#1a1a1a;margin-top:1px;font-variant-numeric:tabular-nums;min-width:36px;text-align:center}
 .pb.on .pl{color:rgba(255,255,255,0.75)}.pb.on .pv{color:white}
 .rodape{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e8e8e4;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:30;box-shadow:0 -4px 20px rgba(0,0,0,0.06)}
 .r-lbl{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:0.5px}
