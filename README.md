@@ -1,4 +1,4 @@
-[index.html](https://github.com/user-attachments/files/29156832/index.html)
+[Uploading index.html…]()
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -43,12 +43,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .grp{font-size:10px;color:#aaa;margin-top:2px;text-transform:capitalize}
 
 .btns{display:flex;gap:4px;flex-shrink:0}
-<span class="pv">R$ ${fmt(eq[k])}</span>;border:1px solid #e0e0dc;border-radius:7px;padding:5px 6px;cursor:pointer;min-width:64px;width:64px;text-align:center ;transition:all 0.15s;background:white;-webkit-tap-highlight-color:transparent}
+.pb{display:flex;flex-direction:column;align-items:center;border:1px solid #e0e0dc;border-radius:7px;padding:5px 6px;cursor:pointer;min-width:46px;transition:all 0.15s;background:white;-webkit-tap-highlight-color:transparent}
 .pb:hover{border-color:#1D9E75}
 .pb.on{background:#1D9E75;border-color:#1D9E75}
-.pl{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
-.pv{font-size:12px;font-weight:700;color:#1a1a1a;margin-top:1px;font-variant-numeric:tabular-nums;min-width:36px;text-align:center}
-.pb.on .pl{color:rgba(255,255,255,0.75)}.pb.on .pv{color:white}
+.pl{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
+.pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px}
+.pb.on .pl{color:rgba(255,255,255,0.75)}
+.pb.on .pv{color:white}
+
 .rodape{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e8e8e4;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:30;box-shadow:0 -4px 20px rgba(0,0,0,0.06)}
 .r-lbl{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:0.5px}
 .r-total{font-size:18px;font-weight:700;color:#1a1a1a;letter-spacing:-0.3px}
@@ -95,8 +97,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-  
-const API="https://script.google.com/macros/s/AKfycbx0KiXvHQm5R19E9AqE7gXiz-sNfvorl4pA4rkYYq_XjaO4leVtyAU6c3M7qAvj_ZxA/exec";
+const API="https://script.google.com/macros/s/AKfycbxR2rX9BJ5YrskpdVZwFBVmkIJkteI-QIP9NRHTPeizBBSp8KdE4zbgIst6mdWgdRHN/exec";
 const WPP="5531975758250";
 const PL={d:"Diária",s:"Semanal",m:"Mensal"};
 
@@ -126,11 +127,11 @@ function normalizeGrp(g){
 }
 
 let equips=[],filtro="Todos",sel={};
-function fmt(n){return"R$"+Math.round(n).toLocaleString("pt-BR");}
+function fmt(n){return"R$ "+Math.round(n).toLocaleString("pt-BR");}
 
 async function load(){
   try{
-    const r=await fetch(API,{redirect:"follow"});
+    const r=await fetch(API);
     if(!r.ok)throw new Error();
     equips=await r.json();
     if(!Array.isArray(equips)||!equips.length)throw new Error();
@@ -167,8 +168,8 @@ function renderLista(){
       <div class="btns">
         ${[["d","Dia"],["s","Sem"],["m","Mês"]].map(([k,l])=>
           `<div class="pb${s&&p===k?" on":""}" onclick="setPer('${nm}','${k}')">
-          <span class="pl">${l}</span>
-           <span class="pv">${fmt(eq[k])}</span>
+            <span class="pl">${l}</span>
+            <span class="pv">${fmt(eq[k])}</span>
           </div>`
         ).join("")}
       </div>
@@ -182,8 +183,8 @@ function tog(nome){
 }
 function desel(nome){delete sel[nome];renderLista();upd();}
 function setPer(nome,p){
-  if(!sel[nome])sel[nome]={};
-  sel[nome].periodo=p;
+  if(!sel[nome])sel[nome]={periodo:p};
+  else sel[nome].periodo=p;
   renderLista();upd();
 }
 
