@@ -1,4 +1,4 @@
-[index.html](https://github.com/user-attachments/files/29156731/index.html)
+[index.html](https://github.com/user-attachments/files/29156832/index.html)
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -97,7 +97,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const API="https://script.google.com/macros/s/AKfycbxR2rX9BJ5YrskpdVZwFBVmkIJkteI-QIP9NRHTPeizBBSp8KdE4zbgIst6mdWgdRHN/exec";
+  
+const API="https://script.google.com/macros/s/AKfycbx0KiXvHQm5R19E9AqE7gXiz-sNfvorl4pA4rkYYq_XjaO4leVtyAU6c3M7qAvj_ZxA/exec";
 const WPP="5531975758250";
 const PL={d:"Diária",s:"Semanal",m:"Mensal"};
 
@@ -131,7 +132,7 @@ function fmt(n){return"R$"+Math.round(n).toLocaleString("pt-BR");}
 
 async function load(){
   try{
-    const r=await fetch(API);
+    const r=await fetch(API,{redirect:"follow"});
     if(!r.ok)throw new Error();
     equips=await r.json();
     if(!Array.isArray(equips)||!equips.length)throw new Error();
