@@ -48,8 +48,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pb.on{background:#1D9E75;border-color:#1D9E75}
 .pl{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:0.3px;font-weight:500}
 .pv{font-size:11px;font-weight:700;color:#1a1a1a;margin-top:1px;font-variant-numeric:tabular-nums;min-width:36px;text-align:center}
-.pb.on .pl{color:rgba(255,255,255,0.75)}
-.pb.on .pv{color:white}.pv-r{font-size:9px;color:#aaa;margin-top:1px}.pb.on .pv-r{color:rgba(255,255,255,0.75)}
+.pb.on .pl{color:rgba(255,255,255,0.75)}.pb.on .pv{color:white}
 .rodape{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e8e8e4;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:30;box-shadow:0 -4px 20px rgba(0,0,0,0.06)}
 .r-lbl{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:0.5px}
 .r-total{font-size:18px;font-weight:700;color:#1a1a1a;letter-spacing:-0.3px}
@@ -169,7 +168,7 @@ function renderLista(){
         ${[["d","Dia"],["s","Sem"],["m","Mês"]].map(([k,l])=>
           `<div class="pb${s&&p===k?" on":""}" onclick="setPer('${nm}','${k}')">
           <span class="pl">${l}</span>
-            <span class="pv-r">R$</span><span class="pv">${Math.round(eq[k]).toLocaleString("pt-BR")}</span>
+           <span class="pv">${fmt(eq[k])}</span>
           </div>`
         ).join("")}
       </div>
